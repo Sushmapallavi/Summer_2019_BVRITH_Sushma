@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>colleges</title>
+    <link rel="stylesheet" href="{% static 'balma.css' %}">
+</head>
+<body>
+
+<form action="{% url 'addcolleges' %}">
+    <input type="submit" value="Add college">
+</form>
+{% if perms.onlineapp.can_view_college %}
+<table class="table is-bordered">
+    <tr>
+        <th>Name</th>
+        <th>Acronym</th>
+    </tr>
+    {% for college in jails %}
+    <tr>
+        <td><a href="{% url 'students' college.acronym %}" >{{college.name}}</a></td>
+        <td>{{college.acronym}}</td>
+        <td><a href="{% url 'editcolleges' college.id %}">Edit</a></td>
+        <td><a href="{% url 'deletecolleges' college.id %}">Delete</a></td>
+    </tr>
+    {% endfor %}
+</table>
+{% endif %}
+</body>
+</html>

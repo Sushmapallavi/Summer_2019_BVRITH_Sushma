@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<form action="{% url 'addstudent' %}">
+    <input type="submit" value="Add student">
+</form>
+<body>
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>College</th>
+        <th>Total</th>
+    </tr>
+    {% for student in jails %}
+    <tr>
+        <td><a href="{% url 'studentmarks' student.id %}" >{{student.name}}</a></td>
+        <td>{{student.college__name}}</td>
+        <td>{{student.mocktest1__total}}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+</body>
+</html>

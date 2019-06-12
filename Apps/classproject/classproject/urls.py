@@ -17,10 +17,15 @@ from django.contrib import admin
 from django.urls import path
 from django.conf import settings
 from django.conf.urls import include, url
+from onlineapp import views
+from onlineapp.views import CollegeView
 
 if settings.DEBUG:
    import debug_toolbar
    urlpatterns = [
-        path('admin/', admin.site.urls),
-       url(r'^__debug__/', include(debug_toolbar.urls)),
+       path('admin/', admin.site.urls),
+       #path('hello/', views.hello_world),
+       #path('colleges/',views.get_all_colleges),
+       path('',include('onlineapp.urls')),
+       url(r'^__debug__/',include(debug_toolbar.urls)),
    ]
