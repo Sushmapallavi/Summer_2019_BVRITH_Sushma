@@ -1,21 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load static %}
     <meta charset="UTF-8">
     <title>Title</title>
+     <link rel="stylesheet" href="{% static 'bulma.css' %}">
 </head>
 <body>
-
+    <div class="columns is-mobile is-centered" style="padding:100px">
+        <div class="column is-3">
     <form method = "POST">
+
     {% csrf_token %}
-    <div>
-        {{form.as_p}}
+        {{ form.as_p}}
+        <div class="control">
         <input type="submit" value="login">
-    </div>
+            </div>
 </form>
-    <br>
-<form action="{% url 'signup' %}">
+            <form action="{% url 'signup' %}">
     <input type="submit" value="signup">
 </form>
+
+    <br>
+
+
+
 </body>
 </html>

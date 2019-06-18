@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>colleges</title>
+    <link rel="stylesheet" href="{% static 'bulma.css' %}">
+    <style>
+.dropbtn {
+  background-color: #3498DB;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropbtn:hover, .dropbtn:focus {
+  background-color: #2980B9;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  overflow: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown a:hover {background-color: #ddd;}
+
+.show {display: block;}
+</style>
+
+    <script>
+        function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+    </script>
+</head>
+<body>
+<div class="dropdown">
+  <button onclick="myFunction()" class="dropbtn">Select Season</button>
+  <div id="myDropdown" class="dropdown-content">
+      {% for j in s %}
+            <a href="http://127.0.0.1:8000/allseasons/{{j.season}}">{{j.season}}</a>
+      {% endfor %}
+  </div>
+</div>
+<br>
+<table class="table table is-striped">
+    <tr>
+        <th>Match-Date</th>
+        <th>Venue</th>
+        <th>Team-1</th>
+        <th>Team-2</th>
+        <th>Toss-winner</th>
+        <th>Toss-decision</th>
+        <th>Result</th>
+        <th>PlayerOfTheMatch</th>
+        <th>details</th>
+    </tr>
+    {% for i in d %}
+    <tr>
+        <td>{{i.date}}</td>
+        <td>{{i.venue}}</td>
+        <td>{{i.team_1}}</td>
+        <td>{{i.team_2}}</td>
+        <td>{{i.toss_winner}}</td>
+        <td>{{i.toss_decision}}</td>
+        <td>{{i.result}}</a></td>
+        <td>{{i.player_of_match}}</td>
+        <td><a href="{% url 'matchdetails' i.id %}" >view match details</a></td>
+    </tr>
+    {% endfor %}
+</table>
+</div>
+</body>
+</html>

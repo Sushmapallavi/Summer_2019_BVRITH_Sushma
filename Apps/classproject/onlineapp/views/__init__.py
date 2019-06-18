@@ -3,3 +3,4 @@ from .addstudent import *
 from .addcollege import *
 from .problems import *
 from .login import *
+from .collegeserializer import *

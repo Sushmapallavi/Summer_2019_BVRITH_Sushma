@@ -23,6 +23,7 @@ from onlineapp.views import CollegeView
 if settings.DEBUG:
    import debug_toolbar
    urlpatterns = [
+       url(r'^api-auth/', include('rest_framework.urls')),
        path('admin/', admin.site.urls),
        #path('hello/', views.hello_world),
        #path('colleges/',views.get_all_colleges),

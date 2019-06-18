@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
-<form action="{% url 'addstudent' %}">
+<form action="{% url 'addstudent' cid %}">
     <input type="submit" value="Add student">
 </form>
 <body>
@@ -19,6 +19,8 @@
         <td><a href="{% url 'studentmarks' student.id %}" >{{student.name}}</a></td>
         <td>{{student.college__name}}</td>
         <td>{{student.mocktest1__total}}</td>
+        <td><a href="{% url 'editstudent' student.id %}">Edit</a></td>
+        <td><a href="{% url 'deletestudent' student.id %}">Delete</a></td>
     </tr>
     {% endfor %}
 </table>

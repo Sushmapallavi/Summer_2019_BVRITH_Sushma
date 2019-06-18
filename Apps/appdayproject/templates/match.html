@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+{% load static %}
+<head>
+    <link rel="stylesheet" href="{% static 'bulma.css' %}">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {font-family: Arial;}
+
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+</style>
+</head>
+<body>
+
+<table class="table table is-narrow" >
+    <tr>
+        <th>Teams</th>
+        <th>Toss Result and decision</th>
+        <th>Winner</th>
+        <th>Man of the match</th>
+    </tr>
+    {% for i in match %}
+    <tr>
+        <td>{{i.team_1}} Vs {{i.team_2}}</td>
+        <td>{{i.toss_winner}} : {{i.toss_decision}}</td>
+        <td>{{i.winner}}</td>
+        <td>{{i.player_of_match}}</td>
+        </tr>
+    {% endfor %}
+</table>
+
+<div class="tab">
+  <button class="tablinks" onclick="inning(event, 'i1')">Innings1</button>
+  <button class="tablinks" onclick="inning(event, 'i2')">Innings2</button>
+</div>
+
+
+<div id="i1" class="tabcontent">
+ <table class="table table is-fullwidth">
+     <tr>
+         <th>Batting Team</th>
+                <th>Bowling team</th>
+                <th>Over</th>
+                <th>Total Runs</th>
+                <th>Wicket</th>
+     </tr>
+            {% for b in innings1 %}
+            <tr>
+                <td>{{b.batting_team}}</td>
+                <td>{{b.bowling_team}}</td>
+                <td>{{b.over}}</td>
+                <td>{{b.total_runs}}</td>
+                <td>{{b.player_dismissed}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+</div>
+
+<div id="i2" class="tabcontent">
+ <table class="table table is-fullwidth">
+     <tr>
+         <th>Batting Team</th>
+                <th>Bowling team</th>
+                <th>Over</th>
+                <th>Total Runs</th>
+                <th>Wicket</th>
+     </tr>
+            {% for b in innings2 %}
+            <tr>
+                <td>{{b.batting_team}}</td>
+                <td>{{b.bowling_team}}</td>
+                <td>{{b.over}}</td>
+                <td>{{b.total_runs}}</td>
+                <td>{{b.player_dismissed}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+</div>
+
+
+<script>
+function inning(evt, cityName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+</script>
+
+</body>
+</html>
